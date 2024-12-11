@@ -41,13 +41,17 @@ class Task:
         """
         if subtasks is None:
             subtasks = []
-        if parent.id:
-            self.id = parent.id + '.' + str(len(parent.subtasks))
+        if parent is not None:
+            if parent.id:
+                self.id = parent.id + '.' + str(len(parent.subtasks))
+            else:
+                self.id = str(len(parent.subtasks))
         else:
-            self.id = str(len(parent.subtasks))
+            self.id = '0'
+        
         self.parent = parent
         self.goal = goal
-        logger.debug(f'Creating task {self.id} with parent={parent.id}, goal={goal}')
+        logger.debug(f'Creating task {self.id} with parent={parent.id if parent else None}, goal={goal}')
         self.subtasks = []
         for subtask in subtasks or []:
             if isinstance(subtask, Task):
