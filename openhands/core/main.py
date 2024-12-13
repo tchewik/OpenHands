@@ -30,6 +30,9 @@ from openhands.runtime import get_runtime_cls
 from openhands.runtime.base import Runtime
 from openhands.storage import get_file_store
 
+import litellm
+litellm.set_verbose = True
+
 
 class FakeUserResponseFunc(Protocol):
     def __call__(

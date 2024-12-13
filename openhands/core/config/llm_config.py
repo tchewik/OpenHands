@@ -36,6 +36,7 @@ class LLMConfig:
         max_output_tokens: The maximum number of output tokens. This is sent to the LLM.
         input_cost_per_token: The cost per input token. This will available in logs for the user to check.
         output_cost_per_token: The cost per output token. This will available in logs for the user to check.
+        openrouter_middle_out: The auto compression implemented in openrouter (https://openrouter.ai/docs/transforms).
         ollama_base_url: The base URL for the OLLAMA API.
         drop_params: Drop any unmapped (unsupported) params without causing an exception.
         disable_vision: If model is vision capable, this option allows to disable image processing (useful for cost reduction).
@@ -70,6 +71,7 @@ class LLMConfig:
     max_output_tokens: int | None = None
     input_cost_per_token: float | None = None
     output_cost_per_token: float | None = None
+    openrouter_middle_out: bool = False
     ollama_base_url: str | None = None
     drop_params: bool = True
     disable_vision: bool | None = None

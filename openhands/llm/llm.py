@@ -148,6 +148,10 @@ class LLM(RetryMixin, DebugMixin):
         def wrapper(*args, **kwargs):
             """Wrapper for the litellm completion function. Logs the input and output of the completion function."""
             from openhands.core.utils import json
+            
+            if self.config.custom_llm_provider.lower() == 'openrouter' and self.config.openrouter_middle_out:
+#                 kwargs['transforms'] = ['middle-out']
+                kwargs['extra_body'] = {'transforms': ["middle-out"]}
 
             messages: list[dict[str, Any]] | dict[str, Any] = []
             mock_function_calling = kwargs.pop('mock_function_calling', False)
