@@ -32,6 +32,9 @@ from openhands.io import read_input, read_task
 from openhands.runtime.base import Runtime
 from openhands.utils.async_utils import call_async_from_sync
 
+import litellm
+litellm.set_verbose = True
+
 
 class FakeUserResponseFunc(Protocol):
     def __call__(
